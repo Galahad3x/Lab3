@@ -9,8 +9,8 @@ public class BankersQueueTest {
     void addElement() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3));
         List<Integer> back = new ArrayList<>(List.of(4, 5, 6));
-        back.add(7);
         BankersQueue<Integer> finalList = new BankersQueue<>(front, back);
+        finalList.add(7);
 
         List<Integer> frontExpected = new ArrayList<>(List.of(1, 2, 3));
         List<Integer> backExpected = new ArrayList<>(List.of(4, 5, 6, 7));
@@ -23,11 +23,11 @@ public class BankersQueueTest {
     void addElementToAnEmptyList() {
         List<Integer> front = new ArrayList<>();
         List<Integer> back = new ArrayList<>(List.of(4, 5, 6));
-        front.add(1);
         BankersQueue<Integer> finalList = new BankersQueue<>(front, back);
+        finalList.add(1);
 
-        List<Integer> frontExpected = new ArrayList<>(List.of(1));
-        List<Integer> backExpected = new ArrayList<>(List.of(4, 5, 6));
+        List<Integer> frontExpected = new ArrayList<>(List.of());
+        List<Integer> backExpected = new ArrayList<>(List.of(4, 5, 6, 1));
         BankersQueue<Integer> expectedList = new BankersQueue<>(frontExpected, backExpected);
 
         assertTrue(finalList.equals(expectedList));
@@ -37,11 +37,11 @@ public class BankersQueueTest {
     void removeElement() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3));
         List<Integer> back = new ArrayList<>(List.of(4, 5, 6));
-        back.remove(2);
         BankersQueue<Integer> finalList = new BankersQueue<>(front, back);
+        finalList.remove();
 
-        List<Integer> frontExpected = new ArrayList<>(List.of(1, 2, 3));
-        List<Integer> backExpected = new ArrayList<>(List.of(4, 5));
+        List<Integer> frontExpected = new ArrayList<>(List.of(1, 2));
+        List<Integer> backExpected = new ArrayList<>(List.of(4, 5, 6));
         BankersQueue<Integer> expectedList = new BankersQueue<>(frontExpected, backExpected);
 
         assertTrue(finalList.equals(expectedList));
@@ -51,10 +51,10 @@ public class BankersQueueTest {
     void transferFromBackWhenRemove() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3));
         List<Integer> back = new ArrayList<>(List.of(4, 5, 6));
-        front.remove(0);
-        front.remove(0);
-        front.remove(0);
         BankersQueue<Integer> finalList = new BankersQueue<>(front, back);
+        for(int i = 0; i < 3;i++){
+            finalList.remove();
+        }
 
         List<Integer> frontExpected = new ArrayList<>(List.of(4));
         List<Integer> backExpected = new ArrayList<>(List.of(5, 6));
