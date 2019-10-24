@@ -1,0 +1,65 @@
+import org.junit.jupiter.api.Test;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class BankersQueueIteratorTest {
+
+    @Test
+    void iterator() {
+        BankersQueue<Integer> queue = new BankersQueue<>();
+        for(int i = 0;i < 10;i++){
+            queue.add(i+1);
+        }
+        Iterator<Integer> it = queue.iterator();
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0;i < 10;i++){
+            list.add(it.next());
+        }
+        assertEquals(list,queue.unify());
+    }
+
+    @Test
+    void middleIterator() {
+        BankersQueue<Integer> queue = new BankersQueue<>();
+        for(int i = 0;i < 10;i++){
+            queue.add(i+1);
+        }
+        Iterator<Integer> it = queue.iterator(5);
+        for(int i = 6; i < 10; i++){
+            assertEquals(it.next(),i);
+        }
+    }
+
+    @Test
+    void hasNext() {
+        BankersQueue<Integer> queue = new BankersQueue<>();
+        Iterator<Integer> it1 = queue.iterator();
+        assertFalse(it1.hasNext());
+        for(int i = 0;i < 10;i++){
+            queue.add(i+1);
+        }
+        Iterator<Integer> it2 = queue.iterator();
+        assertTrue(it2.hasNext());
+    }
+
+    @Test
+    void ConcurrentModificationException() {
+        try {
+            BankersQueue<Integer> queue = new BankersQueue<>();
+            Iterator<Integer> it = queue.iterator();
+            for(int i = 0;i < 10;i++){
+                queue.add(i+1);
+            }
+            System.out.println(it.next());
+            fail("Didn't throw exception");
+        }catch (ConcurrentModificationException c){
+            assertTrue(true);
+        }
+    }
+}
