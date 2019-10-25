@@ -56,11 +56,12 @@ public class BankSimulator {
             }
 
             System.out.println("Time is running: " + time);
-            time += 15;
+
             System.out.println(doneClients.size() >= 100);
             if (doneClients.size() >= 100) {
                 break;
             }
+            time += 15;
         }
     }
 
