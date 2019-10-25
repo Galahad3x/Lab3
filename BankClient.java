@@ -1,4 +1,5 @@
 public class BankClient {
+    //TODO
     private int arrivalTime;
     private int exitTime;
 
