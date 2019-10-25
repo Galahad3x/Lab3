@@ -47,13 +47,14 @@ public class BankSimulator {
         }
         System.out.println(queue.isEmpty());
         while (true) {
+            modifyTime();
             while (hasSpace()) {
                 if (!queue.isEmpty()) {
                     attendClient(queue.element());
                     queue.remove();
                 }
             }
-            modifyTime();
+
             System.out.println("Time is running: " + time);
             time += 15;
             System.out.println(doneClients.size() >= 100);
