@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class BankersQueue <E> implements Queue<E>, Iterable<E> {
-    private List<E> front;
-    private List<E> back;
+    public List<E> front;
+    public List<E> back;
     private int modCount;
 
     //Lists constructor
@@ -24,7 +24,9 @@ public class BankersQueue <E> implements Queue<E>, Iterable<E> {
 
     public List<E> unify(){
         List<E> finl = new ArrayList<>();
-        BankersQueue<E> temp = new BankersQueue<>(front,back);
+        List<E> tempFront = new ArrayList<>(front);
+        List<E> tempBack = new ArrayList<>(back);
+        BankersQueue<E> temp = new BankersQueue<>(tempFront,tempBack);
         while (!temp.isEmpty()){
             finl.add(temp.element());
             temp.remove();
@@ -49,15 +51,13 @@ public class BankersQueue <E> implements Queue<E>, Iterable<E> {
 
     @Override
     public E element() {
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
         if(front.isEmpty()) {
             transfer();
         }
-        return front.get(front.size()-1);
-    }
-
-    public E elementAt(int index) {
-        List<E> unified = this.unify();
-        return unified.get(index);
+        return front.get(front.size() - 1);
     }
 
     private void transfer() {
@@ -99,7 +99,6 @@ public class BankersQueue <E> implements Queue<E>, Iterable<E> {
             if(index >= 0 && index < front.size()) {
                 itf = front.listIterator(index);
                 itb = back.listIterator();
-                expectedModCount = modCount;
             }else if(index > front.size() && index < size()){
                 itf = front.listIterator();
                 itb = back.listIterator(index-front.size());

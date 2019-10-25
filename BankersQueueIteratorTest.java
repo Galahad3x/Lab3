@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -74,6 +73,29 @@ public class BankersQueueIteratorTest {
             }
             fail("Didn't throw exception");
         } catch (NoSuchElementException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    void remove() {
+        try{
+            BankersQueue<Integer> queue = new BankersQueue<>();
+            Iterator<Integer> it = queue.iterator();
+            it.remove();
+            fail("Didn't throw exception");
+        }catch (UnsupportedOperationException u){
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    void elementOfEmpty() {
+        try{
+            BankersQueue<Integer> queue = new BankersQueue<>();
+            queue.element();
+            fail("Didn't throw exception");
+        }catch (NoSuchElementException e){
             assertTrue(true);
         }
     }

@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,14 +21,17 @@ public class BankersQueueTest {
 
     @Test
     void addElementToAnEmptyList() {
-        List<Integer> front = new ArrayList<>();
-        List<Integer> back = new ArrayList<>(List.of(4, 5, 6));
-        BankersQueue<Integer> queue = new BankersQueue<>(front, back);
-        queue.add(7);
-        List<Integer> frontExpected = new ArrayList<>(List.of());
-        List<Integer> backExpected = new ArrayList<>(List.of(4, 5, 6, 7));
-        BankersQueue<Integer> expectedList = new BankersQueue<>(frontExpected, backExpected);
-        assertTrue(queue.equals(expectedList));
+        BankersQueue<Integer> queue = new BankersQueue<>();
+        queue.add(1);
+        List<Integer> frontExpected = new ArrayList<>();
+        List<Integer> backExpected = new ArrayList<>(List.of(1));
+        BankersQueue<Integer> expectedQueue = new BankersQueue<>(frontExpected, backExpected);
+        assertTrue(queue.equals(expectedQueue));
+        assertEquals(queue.element(),1);
+        frontExpected = new ArrayList<>(List.of(1));
+        backExpected = new ArrayList<>();
+        expectedQueue = new BankersQueue<>(frontExpected, backExpected);
+        assertTrue(queue.equals(expectedQueue));
     }
 
     @Test
@@ -72,6 +74,4 @@ public class BankersQueueTest {
         int size = 6;
         assertEquals(size, queue.size());
     }
-
-
 }
