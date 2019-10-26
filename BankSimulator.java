@@ -18,6 +18,7 @@ public class BankSimulator {
             results[i - 1] = calculate();
             System.out.println("###################################");
         }
+
         for (int i = 0; i < NUM_CASHIERS; i++) {
             System.out.println((i + 1) + " caixers: " + results[i]);
         }
