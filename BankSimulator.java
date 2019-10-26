@@ -88,6 +88,7 @@ public class BankSimulator {
     private static void attendClient(BankClient client) {
         for (int i = 0; i < cashiers.length; i++) {
             if (cashiers[i].equals(free)) cashiers[i] = client;
+break;
         }
     }
 }
