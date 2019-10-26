@@ -1,26 +1,15 @@
 public class BankClient {
-    //TODO
-    private int arrivalTime;
-    private int exitTime;
+    public int arrivalTime;
+    public int exitTime;
+    public int service;
 
-    public BankClient(int arrivalTime,int exitTime){
+    public BankClient(int arrivalTime, int exitTime) {
         this.arrivalTime = arrivalTime;
         this.exitTime = exitTime;
+        this.service = 0;
     }
 
-    void setArrivalTime(int arrivalTime){
-        this.arrivalTime = arrivalTime;
-    }
-
-    void setExitTime(int exitTime){
-        this.exitTime = exitTime;
-    }
-
-    public int getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public int getExitTime() {
-        return exitTime;
+    public boolean equals(BankClient other) {
+        return this.arrivalTime == other.arrivalTime;
     }
 }
