@@ -25,23 +25,13 @@ public class BankersQueueTest {
         queue.add(1);
         List<Integer> frontExpected = new ArrayList<>();
         List<Integer> backExpected = new ArrayList<>(List.of(1));
-        BankersQueue<Integer> expectedList = new BankersQueue<>(frontExpected, backExpected);
-        assertTrue(queue.equals(expectedList));
-    }
-
-    @Test
-    void getElement() {
-        List<Integer> front = new ArrayList<>(List.of());
-        List<Integer> back = new ArrayList<>(List.of(1));
-        BankersQueue<Integer> queue = new BankersQueue<>(front, back);
-        assertEquals(1, queue.element());
-    }
-
-    @Test
-    void getElement_v2() {
-        BankersQueue<Integer> queue = new BankersQueue<>();
-        queue.add(1);
-        assertEquals(1, queue.element());
+        BankersQueue<Integer> expectedQueue = new BankersQueue<>(frontExpected, backExpected);
+        assertTrue(queue.equals(expectedQueue));
+        assertEquals(queue.element(),1);
+        frontExpected = new ArrayList<>(List.of(1));
+        backExpected = new ArrayList<>();
+        expectedQueue = new BankersQueue<>(frontExpected, backExpected);
+        assertTrue(queue.equals(expectedQueue));
     }
 
     @Test
@@ -81,6 +71,7 @@ public class BankersQueueTest {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3, 4));
         List<Integer> back = new ArrayList<>(List.of(5, 6));
         BankersQueue<Integer> queue = new BankersQueue<>(front, back);
-        assertEquals(6, queue.size());
+        int size = 6;
+        assertEquals(size, queue.size());
     }
 }
