@@ -35,11 +35,10 @@ public class BankSimulator {
      * Funció principal, executa totes les simulacions i mostra els resultats
      */
     public static void main(String[] args) {
-        float[] results = new float[NUM_CASHIERS];
+        int[] results = new int[NUM_CASHIERS];
         for (int i = 1; i <= NUM_CASHIERS; i++) {
             simulateBank(i);
             results[i - 1] = calculateTimeInBank();
-            System.out.println("###################################");
         }
         for (int i = 0; i < NUM_CASHIERS; i++) {
             System.out.println((i + 1) + " caixers: " + results[i]);
@@ -48,10 +47,12 @@ public class BankSimulator {
     }
 
     /**
+     * Llegint de la cua doneClients, calcula el temps mitjà que els clients han estat dins del banc
+     *
      * @return Resultat de la simulació
      */
-    private static float calculateTimeInBank() {
-        float timeInBankTotal = 0;
+    private static int calculateTimeInBank() {
+        int timeInBankTotal = 0;
         for (int i = 0; i < doneClients.size(); i++) {
             timeInBankTotal += (doneClients.element().exitTime - doneClients.element().arrivalTime);
             doneClients.remove();
@@ -84,7 +85,6 @@ public class BankSimulator {
             }
             time += 15;
             modifyTime();
-            System.out.println("Time: " + time);
         }
     }
 
@@ -105,6 +105,8 @@ public class BankSimulator {
     }
 
     /**
+     * Comprova si hi ha algun caixer lliure
+     *
      * @return True si hi ha algun caixer lliure
      */
     private static boolean hasSpace() {
@@ -115,7 +117,7 @@ public class BankSimulator {
     }
 
     /**
-     * Assigna el client al primer caixer lliure
+     * Assigna el client al primer caixer lliure que troba
      *
      * @param client Client que volem atendre
      */

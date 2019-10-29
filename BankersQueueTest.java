@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BankersQueueTest {
 
+    /**
+     * Comprova que la funció add funciona correctament
+     */
     @Test
     void addElement() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3));
@@ -19,6 +22,9 @@ public class BankersQueueTest {
         assertTrue(queue.equals(expectedList));
     }
 
+    /**
+     * Comprova que la funció add funciona correctament amb una llista buida
+     */
     @Test
     void addElementToAnEmptyList() {
         BankersQueue<Integer> queue = new BankersQueue<>();
@@ -34,6 +40,9 @@ public class BankersQueueTest {
         assertTrue(queue.equals(expectedQueue));
     }
 
+    /**
+     * Comprova que la funció remove funciona correctament
+     */
     @Test
     void removeElement() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3));
@@ -46,6 +55,9 @@ public class BankersQueueTest {
         assertTrue(queue.equals(expectedList));
     }
 
+    /**
+     * Comprova que es passen els números correctament de back a front quan és necessari, mitjançant la funció transfer()
+     */
     @Test
     void transferFromBackWhenRemove() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3));
@@ -60,12 +72,20 @@ public class BankersQueueTest {
         assertTrue(queue.equals(expectedList));
     }
 
+    /**
+     * Comprova que la funció isEmpty funciona correctament
+     */
     @Test
     void isEmpty() {
         BankersQueue<Integer> queue = new BankersQueue<>();
         assertTrue(queue.isEmpty());
+        queue.add(1);
+        assertFalse(queue.isEmpty());
     }
 
+    /**
+     * Comprova que la funció size funciona correctament
+     */
     @Test
     void getSize() {
         List<Integer> front = new ArrayList<>(List.of(1, 2, 3, 4));

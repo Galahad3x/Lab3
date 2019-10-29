@@ -36,6 +36,8 @@ public class BankersQueue<E> implements Queue<E>, Iterable<E> {
     }
 
     /**
+     * Compara dos cues utilitzant una sola llista que treu a partir de cada
+     *
      * @param other L'altra cua amb la que comparem
      * @return True si tenen els mateixos elements i en el mateix ordre
      */
@@ -114,6 +116,8 @@ public class BankersQueue<E> implements Queue<E>, Iterable<E> {
     }
 
     /**
+     * Comprova si la cua està buida
+     *
      * @return True si la cua està buida
      */
     @Override
@@ -171,6 +175,7 @@ public class BankersQueue<E> implements Queue<E>, Iterable<E> {
 
         /**
          * Crea un iterador a líndex que entra per paràmetre
+         *
          * @param index Índex on volem posicionar l'iterador
          * @throws IndexOutOfBoundsException si l'índex està fora de la llista
          */
@@ -201,6 +206,8 @@ public class BankersQueue<E> implements Queue<E>, Iterable<E> {
         }
 
         /**
+         * Comprova si algun dels dos iteradors té algun element següent per saber si queda algun element a la cua
+         *
          * @return True si hi ha un següent element
          */
         @Override
@@ -209,8 +216,10 @@ public class BankersQueue<E> implements Queue<E>, Iterable<E> {
         }
 
         /**
+         * Retorna el següent element de la cua, automàticament movent-se al següent element
+         *
          * @return El següent element de la cua
-         * @throws NoSuchElementException si no hi ha element següent
+         * @throws NoSuchElementException          si no hi ha element següent
          * @throws ConcurrentModificationException si s'ha modificat la cua durant el recorregut
          */
         @Override
@@ -229,6 +238,8 @@ public class BankersQueue<E> implements Queue<E>, Iterable<E> {
         }
 
         /**
+         * Llança una excepció UnsupportedOperationException
+         *
          * @throws UnsupportedOperationException ja que no està implementada
          */
         @Override

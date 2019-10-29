@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BankersQueueIteratorTest {
 
+    /**
+     * Comprova que l'iterador llegeix una cua des de l'inici correctament
+     */
     @Test
     void iterator() {
         BankersQueue<Integer> queue = new BankersQueue<>();
@@ -21,6 +24,9 @@ public class BankersQueueIteratorTest {
         assertEquals(list, queue.unify());
     }
 
+    /**
+     * Comprova que l'iterador llegeix una cua des d'una posició mitja correctament
+     */
     @Test
     void middleIterator() {
         BankersQueue<Integer> queue = new BankersQueue<>();
@@ -33,6 +39,9 @@ public class BankersQueueIteratorTest {
         }
     }
 
+    /**
+     * Comprova que la funció hasNext() funciona correctament
+     */
     @Test
     void hasNext() {
         BankersQueue<Integer> queue = new BankersQueue<>();
@@ -45,6 +54,11 @@ public class BankersQueueIteratorTest {
         assertTrue(it2.hasNext());
     }
 
+    /**
+     * Comprova que es llança l'excepció ConcurrectModificationException si intentem modificar la cua durant el recorregut de l'iterador
+     *
+     * @throws ConcurrentModificationException si s'utilitza l'iterador incorrectament
+     */
     @Test
     void ConcurrentModificationException() {
         try {
@@ -60,6 +74,11 @@ public class BankersQueueIteratorTest {
         }
     }
 
+    /**
+     * Comprova que es llança l'excepció NoSuchElementException si l'iterador llegeix des d0un índex no vàlid
+     *
+     * @throws NoSuchElementException si s'utilitza l'iterador incorrectament
+     */
     @Test
     void NoSuchElementException() {
         try {
@@ -77,25 +96,35 @@ public class BankersQueueIteratorTest {
         }
     }
 
+    /**
+     * Comprova que es llança l'excepció UnsupportedOperationException si es crida a remove()
+     *
+     * @throws UnsupportedOperationException ja que remove() no està implementat
+     */
     @Test
     void remove() {
-        try{
+        try {
             BankersQueue<Integer> queue = new BankersQueue<>();
             Iterator<Integer> it = queue.iterator();
             it.remove();
             fail("Didn't throw exception");
-        }catch (UnsupportedOperationException u){
+        } catch (UnsupportedOperationException u) {
             assertTrue(true);
         }
     }
 
+    /**
+     * Comprova que es llança l'excepció NoSuchElementException si es crida a l'element d'una llista buida
+     *
+     * @throws NoSuchElementException ja que la llista està buida
+     */
     @Test
     void elementOfEmpty() {
-        try{
+        try {
             BankersQueue<Integer> queue = new BankersQueue<>();
             queue.element();
             fail("Didn't throw exception");
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             assertTrue(true);
         }
     }
